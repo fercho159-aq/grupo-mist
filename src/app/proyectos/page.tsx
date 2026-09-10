@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Container from "@/components/ui/Container";
 import SectionTitle from "@/components/ui/SectionTitle";
 import { proyectos } from "@/data/proyectos";
@@ -9,13 +10,28 @@ export const metadata: Metadata = {
     "Conoce los proyectos más destacados de Grupo Mist de México en obra civil, infraestructura, energía limpia y más.",
 };
 
+const projectImages: Record<string, string> = {
+  'pavimentacion-alcaldia-cuauhtemoc': '/images/proyectos/pavimentacion.jpg',
+  'mantenimiento-chapultepec': '/images/proyectos/areas-verdes.jpg',
+  'remodelacion-hospital-general': '/images/proyectos/hospital.jpg',
+  'pozos-agua-iztapalapa': '/images/proyectos/pozos-agua.jpg',
+  'limpieza-conade': '/images/proyectos/limpieza.jpg',
+  'calentadores-solares-tlahuac': '/images/proyectos/energia-solar.jpg',
+  'aires-acondicionados-sat': '/images/proyectos/aires-acondicionados.jpg',
+  'nave-industrial-vallejo': '/images/proyectos/nave-industrial.jpg',
+};
+
 function ProjectCard({ proyecto }: { proyecto: (typeof proyectos)[0] }) {
   return (
     <div className="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg transition-shadow group">
-      <div className="aspect-video bg-gradient-to-br from-primary/10 to-accent/10 relative overflow-hidden">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-primary/30 text-sm">Foto del proyecto</span>
-        </div>
+      <div className="aspect-video relative overflow-hidden">
+        <Image
+          src={projectImages[proyecto.slug] || '/images/proyectos/pavimentacion.jpg'}
+          alt={proyecto.titulo}
+          fill
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
         <div className="absolute top-3 left-3">
           <span className="bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full">
             {proyecto.categoria}
@@ -57,8 +73,9 @@ export default function ProyectosPage() {
 
   return (
     <>
-      <section className="relative bg-gradient-to-br from-dark to-primary-dark py-24 md:py-32">
-        <div className="absolute inset-0 bg-black/30" />
+      <section className="relative py-24 md:py-32 overflow-hidden">
+        <Image src="/images/hero/hero-proyectos.jpg" alt="Proyectos de infraestructura" fill className="object-cover" />
+        <div className="absolute inset-0 bg-black/50" />
         <Container className="relative z-10 text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
             Proyectos

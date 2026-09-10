@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Button from '@/components/ui/Button';
 import Container from '@/components/ui/Container';
 
@@ -8,12 +9,12 @@ export default function Hero() {
   return (
     <section className="relative flex min-h-[80vh] items-center md:min-h-screen">
       {/* Background */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            'linear-gradient(135deg, #2A4A5E 0%, #3D6B8E 40%, #5A6B3C 70%, #8B7D3C 100%)',
-        }}
+      <Image
+        src="/images/hero/hero-home.jpg"
+        alt="Construcción e infraestructura"
+        fill
+        className="object-cover"
+        priority
       />
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/40" />
@@ -22,23 +23,23 @@ export default function Hero() {
       <Container className="relative z-10 py-20">
         <div className="max-w-3xl">
           {/* Badge */}
-          <span className="mb-6 inline-block rounded-full border border-white/30 bg-white/10 px-4 py-1.5 text-sm text-white/90 backdrop-blur-sm">
+          <span className="animate-fade-in-up mb-6 inline-block rounded-full border border-white/30 bg-white/10 px-4 py-1.5 text-sm text-white/90 backdrop-blur-sm" style={{ animationDelay: '0.2s', animationFillMode: 'both' }}>
             Grupo Mist de Mexico, S.A. de C.V.
           </span>
 
           {/* Heading */}
-          <h1 className="mb-6 text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
+          <h1 className="animate-fade-in-up mb-6 text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl" style={{ animationDelay: '0.4s', animationFillMode: 'both' }}>
             Adaptamos nuestras soluciones a tus requerimientos
           </h1>
 
           {/* Subtitle */}
-          <p className="mb-8 max-w-2xl text-lg text-white/80 md:text-xl">
+          <p className="animate-fade-in-up mb-8 max-w-2xl text-lg text-white/80 md:text-xl" style={{ animationDelay: '0.6s', animationFillMode: 'both' }}>
             Construccion, infraestructura y servicios integrales para el sector
             publico y privado
           </p>
 
           {/* CTAs */}
-          <div className="flex flex-col gap-4 sm:flex-row">
+          <div className="animate-fade-in-up flex flex-col gap-4 sm:flex-row" style={{ animationDelay: '0.8s', animationFillMode: 'both' }}>
             <Button variant="secondary" size="lg" href="/servicios">
               Conoce nuestros servicios
             </Button>

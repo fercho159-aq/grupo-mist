@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Container from '@/components/ui/Container';
 import SectionTitle from '@/components/ui/SectionTitle';
+import AnimateOnScroll from '@/components/ui/AnimateOnScroll';
 import { servicios } from '@/data/servicios';
 
 const iconPaths: Record<string, string> = {
@@ -23,17 +24,19 @@ export default function ServicesGrid() {
   return (
     <section className="bg-white py-16 md:py-24">
       <Container>
-        <SectionTitle
-          title="Nuestros Servicios"
-          subtitle="Soluciones integrales para cada necesidad"
-        />
+        <AnimateOnScroll>
+          <SectionTitle
+            title="Nuestros Servicios"
+            subtitle="Soluciones integrales para cada necesidad"
+          />
+        </AnimateOnScroll>
 
         <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {servicios.map((servicio) => (
+          {servicios.map((servicio, index) => (
+            <AnimateOnScroll key={servicio.slug} delay={index * 75}>
             <Link
-              key={servicio.slug}
               href={`/servicios/${servicio.slug}`}
-              className="group rounded-xl border border-gray-200 bg-white p-6 transition-all duration-300 hover:border-[#8B7D3C]/40 hover:shadow-lg"
+              className="group block rounded-xl border border-gray-200 bg-white p-6 transition-all duration-300 hover:border-[#8B7D3C]/40 hover:shadow-lg"
             >
               {/* Icon */}
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#8B7D3C]">
@@ -68,6 +71,7 @@ export default function ServicesGrid() {
                 </svg>
               </span>
             </Link>
+            </AnimateOnScroll>
           ))}
         </div>
       </Container>

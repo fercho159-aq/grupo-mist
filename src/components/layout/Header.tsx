@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { MegaMenu } from './MegaMenu';
@@ -13,68 +14,6 @@ const navLinks = [
   { href: '/proyectos', label: 'Proyectos' },
   { href: '/contacto', label: 'Contacto' },
 ];
-
-function MistLogo({ className = '' }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 80 80"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={className}
-      aria-label="Grupo Mist logo"
-    >
-      <circle cx="40" cy="40" r="38" stroke="currentColor" strokeWidth="2.5" fill="none" />
-      <circle cx="40" cy="40" r="33" stroke="currentColor" strokeWidth="1" fill="none" />
-      <text
-        x="40"
-        y="44"
-        textAnchor="middle"
-        dominantBaseline="middle"
-        fontFamily="Georgia, serif"
-        fontWeight="bold"
-        fontSize="18"
-        fill="currentColor"
-        letterSpacing="3"
-      >
-        MIST
-      </text>
-      <path
-        d="M 15 26 A 30 30 0 0 1 65 26"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="0.8"
-      />
-      <path
-        d="M 15 54 A 30 30 0 0 0 65 54"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="0.8"
-      />
-      <text
-        x="40"
-        y="22"
-        textAnchor="middle"
-        fontFamily="Arial, sans-serif"
-        fontSize="5.5"
-        fill="currentColor"
-        letterSpacing="3.5"
-      >
-        GRUPO
-      </text>
-      <text
-        x="40"
-        y="63"
-        textAnchor="middle"
-        fontFamily="Arial, sans-serif"
-        fontSize="4.5"
-        fill="currentColor"
-        letterSpacing="1.8"
-      >
-        DE MEXICO
-      </text>
-    </svg>
-  );
-}
 
 export function Header() {
   const pathname = usePathname();
@@ -111,16 +50,8 @@ export function Header() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-20 items-center justify-between">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-3 shrink-0 text-primary">
-              <MistLogo className="h-14 w-14" />
-              <div className="hidden sm:block">
-                <span className="block text-lg font-bold leading-tight">
-                  Grupo Mist
-                </span>
-                <span className="block text-xs text-gray-medium leading-tight">
-                  de Mexico
-                </span>
-              </div>
+            <Link href="/" className="flex items-center shrink-0">
+              <Image src="/images/logo.png" alt="Grupo Mist" width={180} height={35} className="h-9 w-auto" priority />
             </Link>
 
             {/* Desktop Navigation */}

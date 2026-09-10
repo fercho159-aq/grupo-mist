@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { servicios } from '@/data/servicios';
 
 const empresaLinks = [
@@ -14,39 +15,8 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {/* Column 1: Logo & Description */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <Link href="/" className="inline-flex items-center gap-3">
-              <svg
-                viewBox="0 0 80 80"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-12 w-12"
-                aria-label="Grupo Mist logo"
-              >
-                <circle cx="40" cy="40" r="38" stroke="#8B7D3C" strokeWidth="2.5" fill="none" />
-                <circle cx="40" cy="40" r="33" stroke="#8B7D3C" strokeWidth="1" fill="none" />
-                <text
-                  x="40"
-                  y="44"
-                  textAnchor="middle"
-                  dominantBaseline="middle"
-                  fontFamily="Georgia, serif"
-                  fontWeight="bold"
-                  fontSize="18"
-                  fill="#8B7D3C"
-                  letterSpacing="3"
-                >
-                  MIST
-                </text>
-                <path d="M 15 26 A 30 30 0 0 1 65 26" fill="none" stroke="#8B7D3C" strokeWidth="0.8" />
-                <path d="M 15 54 A 30 30 0 0 0 65 54" fill="none" stroke="#8B7D3C" strokeWidth="0.8" />
-                <text x="40" y="22" textAnchor="middle" fontFamily="Arial, sans-serif" fontSize="5.5" fill="#8B7D3C" letterSpacing="3.5">
-                  GRUPO
-                </text>
-                <text x="40" y="63" textAnchor="middle" fontFamily="Arial, sans-serif" fontSize="4.5" fill="#8B7D3C" letterSpacing="1.8">
-                  DE MEXICO
-                </text>
-              </svg>
-              <span className="text-lg font-bold text-primary">Grupo Mist</span>
+            <Link href="/" className="inline-flex items-center">
+              <Image src="/images/logo.png" alt="Grupo Mist" width={150} height={29} className="h-7 w-auto brightness-0 invert" />
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-gray-400">
               Grupo Mist de Mexico, S.A. de C.V. es una empresa comprometida con la excelencia en servicios

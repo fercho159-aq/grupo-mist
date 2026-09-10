@@ -1,7 +1,18 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import Container from '@/components/ui/Container';
 import SectionTitle from '@/components/ui/SectionTitle';
+import AnimateOnScroll from '@/components/ui/AnimateOnScroll';
 import { proyectos } from '@/data/proyectos';
+
+const projectImages: Record<string, string> = {
+  'pavimentacion-alcaldia-cuauhtemoc': '/images/proyectos/pavimentacion.jpg',
+  'mantenimiento-chapultepec': '/images/proyectos/areas-verdes.jpg',
+  'remodelacion-hospital-general': '/images/proyectos/hospital.jpg',
+  'pozos-agua-iztapalapa': '/images/proyectos/pozos-agua.jpg',
+  'calentadores-solares-tlahuac': '/images/proyectos/energia-solar.jpg',
+  'nave-industrial-vallejo': '/images/proyectos/nave-industrial.jpg',
+};
 
 export default function FeaturedProjects() {
   const featured = proyectos.filter((p) => p.destacado);
@@ -9,25 +20,26 @@ export default function FeaturedProjects() {
   return (
     <section className="bg-[#F8F7F4] py-16 md:py-24">
       <Container>
-        <SectionTitle
-          title="Proyectos Destacados"
-          subtitle="Obras que hablan por nosotros"
-        />
+        <AnimateOnScroll>
+          <SectionTitle
+            title="Proyectos Destacados"
+            subtitle="Obras que hablan por nosotros"
+          />
+        </AnimateOnScroll>
 
         <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {featured.map((proyecto) => (
+          {featured.map((proyecto, index) => (
+            <AnimateOnScroll key={proyecto.slug} delay={index * 100}>
             <div
-              key={proyecto.slug}
               className="group overflow-hidden rounded-xl bg-white shadow-sm transition-all duration-300 hover:shadow-lg"
             >
               {/* Image area */}
               <div className="relative aspect-video overflow-hidden">
-                <div
-                  className="absolute inset-0 transition-transform duration-500 group-hover:scale-105"
-                  style={{
-                    background:
-                      'linear-gradient(135deg, #3D6B8E 0%, #2A4A5E 50%, #1A1A1A 100%)',
-                  }}
+                <Image
+                  src={projectImages[proyecto.slug] || '/images/proyectos/pavimentacion.jpg'}
+                  alt={proyecto.titulo}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 {/* Dark gradient overlay for text readability */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
@@ -57,6 +69,7 @@ export default function FeaturedProjects() {
                 </p>
               </div>
             </div>
+            </AnimateOnScroll>
           ))}
         </div>
 

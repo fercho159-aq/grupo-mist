@@ -1,5 +1,6 @@
 import Container from '@/components/ui/Container';
 import SectionTitle from '@/components/ui/SectionTitle';
+import AnimateOnScroll from '@/components/ui/AnimateOnScroll';
 import { clientes } from '@/data/clientes';
 
 export default function ClientLogos() {
@@ -9,9 +10,12 @@ export default function ClientLogos() {
   return (
     <section className="bg-white py-16 md:py-24">
       <Container>
-        <SectionTitle title="Clientes que confian en nosotros" />
+        <AnimateOnScroll>
+          <SectionTitle title="Clientes que confian en nosotros" />
+        </AnimateOnScroll>
 
         {/* Sector Publico */}
+        <AnimateOnScroll delay={100}>
         <div className="mt-12">
           <h3 className="mb-4 text-center text-sm font-semibold uppercase tracking-widest text-gray-400">
             Sector Publico
@@ -27,8 +31,10 @@ export default function ClientLogos() {
             ))}
           </div>
         </div>
+        </AnimateOnScroll>
 
         {/* Sector Privado */}
+        <AnimateOnScroll delay={200}>
         <div className="mt-8">
           <h3 className="mb-4 text-center text-sm font-semibold uppercase tracking-widest text-gray-400">
             Sector Privado
@@ -44,6 +50,7 @@ export default function ClientLogos() {
             ))}
           </div>
         </div>
+        </AnimateOnScroll>
       </Container>
     </section>
   );

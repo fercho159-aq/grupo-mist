@@ -1,9 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import Container from "@/components/ui/Container";
 import { servicios } from "@/data/servicios";
 import { proyectos } from "@/data/proyectos";
+
+const serviceImages: Record<string, string> = {
+  'obra-civil': '/images/proyectos/nave-industrial.jpg',
+  'areas-verdes': '/images/proyectos/areas-verdes.jpg',
+  'limpieza': '/images/proyectos/limpieza.jpg',
+  'pozos-y-tanques': '/images/proyectos/pozos-agua.jpg',
+  'aires-acondicionados': '/images/proyectos/aires-acondicionados.jpg',
+  'salas-hospitalarias': '/images/proyectos/hospital.jpg',
+  'pavimentacion': '/images/proyectos/pavimentacion.jpg',
+  'energia-limpia': '/images/proyectos/energia-solar.jpg',
+};
 
 export function generateStaticParams() {
   return servicios.map((s) => ({ slug: s.slug }));
@@ -42,8 +54,9 @@ export default async function ServicioDetailPage({
 
   return (
     <>
-      <section className="relative bg-gradient-to-br from-dark to-accent py-24 md:py-32">
-        <div className="absolute inset-0 bg-black/30" />
+      <section className="relative py-24 md:py-32 overflow-hidden">
+        <Image src={serviceImages[servicio.slug] || '/images/hero/hero-servicios.jpg'} alt={servicio.nombre} fill className="object-cover" />
+        <div className="absolute inset-0 bg-black/50" />
         <Container className="relative z-10">
           <Link
             href="/servicios"
@@ -67,8 +80,13 @@ export default async function ServicioDetailPage({
         <Container>
           <div className="grid lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2">
-              <div className="aspect-video bg-gradient-to-br from-primary/20 to-accent/20 rounded-xl mb-8 flex items-center justify-center">
-                <span className="text-primary/40 text-sm">Imagen del servicio</span>
+              <div className="aspect-video relative rounded-xl mb-8 overflow-hidden">
+                <Image
+                  src={serviceImages[servicio.slug] || '/images/hero/hero-servicios.jpg'}
+                  alt={servicio.nombre}
+                  fill
+                  className="object-cover rounded-xl"
+                />
               </div>
               <h2 className="text-2xl font-bold text-dark mb-4">Descripción</h2>
               <p className="text-gray-600 text-lg leading-relaxed mb-8">

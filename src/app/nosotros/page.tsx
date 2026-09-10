@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Container from "@/components/ui/Container";
 import SectionTitle from "@/components/ui/SectionTitle";
 import { equipo } from "@/data/equipo";
@@ -18,8 +19,9 @@ export default function NosotrosPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-dark to-accent py-24 md:py-32">
-        <div className="absolute inset-0 bg-black/30" />
+      <section className="relative py-24 md:py-32 overflow-hidden">
+        <Image src="/images/hero/hero-nosotros.jpg" alt="Equipo Grupo Mist" fill className="object-cover" />
+        <div className="absolute inset-0 bg-black/50" />
         <Container className="relative z-10 text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
             Nosotros
