@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { MegaMenu } from './MegaMenu';
 import { MobileMenu } from './MobileMenu';
 
@@ -20,6 +20,16 @@ export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
+  const megaMenuTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const openMegaMenu = useCallback(() => {
+    if (megaMenuTimeout.current) clearTimeout(megaMenuTimeout.current);
+    setIsMegaMenuOpen(true);
+  }, []);
+
+  const closeMegaMenuDelayed = useCallback(() => {
+    megaMenuTimeout.current = setTimeout(() => setIsMegaMenuOpen(false), 150);
+  }, []);
 
   useEffect(() => {
     function handleScroll() {
@@ -62,12 +72,12 @@ export function Header() {
                   className="relative"
                   onMouseEnter={
                     link.label === 'Servicios'
-                      ? () => setIsMegaMenuOpen(true)
+                      ? openMegaMenu
                       : undefined
                   }
                   onMouseLeave={
                     link.label === 'Servicios'
-                      ? () => setIsMegaMenuOpen(false)
+                      ? closeMegaMenuDelayed
                       : undefined
                   }
                 >
@@ -141,8 +151,8 @@ export function Header() {
 
         {/* MegaMenu Dropdown */}
         <div
-          onMouseEnter={() => setIsMegaMenuOpen(true)}
-          onMouseLeave={() => setIsMegaMenuOpen(false)}
+          onMouseEnter={openMegaMenu}
+          onMouseLeave={closeMegaMenuDelayed}
         >
           <MegaMenu isOpen={isMegaMenuOpen} onClose={() => setIsMegaMenuOpen(false)} />
         </div>
